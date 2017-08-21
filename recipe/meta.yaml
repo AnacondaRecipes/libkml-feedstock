@@ -12,27 +12,20 @@ source:
     - empty_char.patch  # [win and (py35 or py36)]
 
 build:
-  number: 6
-  skip: True  # [win and py36]
-  features:
-    - vc9  # [win and py27]
-    - vc14  # [win and (py35 or py36)]
+  number: 7
+  run_exports:
+    # no ABI lab result.  Pinning to major-minor as conda-forge has.
+    - {{ pin_subpackage('libkml', max_pin='x.x')
 
 requirements:
   build:
-    - python  # [win]
-    - boost 1.66.0
     - cmake
-    - expat 2.2.*
-    - zlib 1.2.11
-    - vc 9  # [win and py27]
-    - vc 14  # [win and (py35 or py36)]
+    - expat
+    - zlib
+    - libboost  {{ boost }}
+    - {{ compiler('c') }}
   run:
-    - boost 1.66.0
-    - expat 2.2.*
-    - zlib 1.2.11
-    - vc 9  # [win and py27]
-    - vc 14  # [win and (py35 or py36)]
+    - {{ pin_compatible('libboost', 'x.x.x') }}
 
 test:
   commands:
@@ -55,3 +48,4 @@ about:
 extra:
   recipe-maintainers:
     - ocefpaf
+    - msarahan
