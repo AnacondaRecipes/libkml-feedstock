@@ -13,30 +13,33 @@ source:
     - empty_char.patch  # [win and (py35 or py36)]
 
 build:
-  number: 1
-  skip: True  # [win and py36]
+  number: 2
   features:
-    - vc9  # [win and py27]
-    - vc10  # [win and py34]
-    - vc14  # [win and (py35 or py36)]
+    - vc{{ vc }}  # [win]
+  run_exports:
+    # no ABI lab result.  Pinning to major-minor as conda-forge has.
+    - {{ pin_subpackage('libkml', max_pin='x.x')
 
 requirements:
   build:
     - cmake
-    - python  # [win]
-    - expat 2.1.*
-    - zlib 1.2.8
-    - boost 1.64.*
-    - vc 9  # [win and py27]
-    - vc 10  # [win and py34]
-    - vc 14  # [win and (py35 or py36)]
-  run:
-    - expat 2.1.*
-    - zlib 1.2.8
-    - boost 1.64.*
-    - vc 9  # [win and py27]
-    - vc 10  # [win and py34]
-    - vc 14  # [win and (py35 or py36)]
+    - expat
+    - zlib
+    - boost-cpp
+    - {{ compiler('c') }}
+  # run:
+    # expat removed here because package has run_exports for itself
+    #    https://github.com/AnacondaRecipes/expat-feedstock/pull/1
+    # this req isn't actually necessary, as run_exports will add it.  Left here for reference.
+    # - expat 2.1.*
+    # zlib removed here because package has run_exports for itself
+    #    https://github.com/AnacondaRecipes/zlib-feedstock/pull/2
+    # this req isn't actually necessary, as run_exports will add it.  Left here for reference.
+    # - zlib 1.2.8
+    # boost removed here because package has run_exports for itself
+    #     https://github.com/AnacondaRecipes/boost-cpp-feedstock/pull/1
+    # this req isn't actually necessary, as run_exports will add it.  Left here for reference.
+    # - boost 1.64.*
 
 test:
   commands:
@@ -59,3 +62,4 @@ about:
 extra:
   recipe-maintainers:
     - ocefpaf
+    - msarahan
