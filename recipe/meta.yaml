@@ -18,15 +18,17 @@ build:
     - vc{{ vc }}  # [win]
   run_exports:
     # no ABI lab result.  Pinning to major-minor as conda-forge has.
-    - {{ pin_subpackage('libkml', max_pin='x.x')
+    - {{ pin_subpackage('libkml', max_pin='x.x') }}
 
 requirements:
   build:
     - cmake
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
     - expat
     - zlib
     - boost-cpp
-    - {{ compiler('c') }}
   # run:
     # expat removed here because package has run_exports for itself
     #    https://github.com/AnacondaRecipes/expat-feedstock/pull/1
