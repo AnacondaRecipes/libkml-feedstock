@@ -28,8 +28,8 @@ requirements:
   host:
     - expat
     - zlib
-    - boost-cpp
-  # run:
+    - libboost
+  run:
     # expat removed here because package has run_exports for itself
     #    https://github.com/AnacondaRecipes/expat-feedstock/pull/1
     # this req isn't actually necessary, as run_exports will add it.  Left here for reference.
@@ -42,6 +42,8 @@ requirements:
     #     https://github.com/AnacondaRecipes/boost-cpp-feedstock/pull/1
     # this req isn't actually necessary, as run_exports will add it.  Left here for reference.
     # - boost 1.64.*
+    # version pinning is provided by a "pin_run_as_build" key in the user-wide conda_build_config.yaml
+    - libboost
 
 test:
   commands:
