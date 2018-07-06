@@ -13,7 +13,7 @@ source:
     - empty_char.patch  # [win and (py35 or py36)]
 
 build:
-  number: 3
+  number: 4
   run_exports:
     # no ABI lab result.  Pinning to major-minor as conda-forge has.
     - {{ pin_subpackage('libkml', max_pin='x.x') }}
@@ -25,6 +25,7 @@ requirements:
     - {{ compiler('cxx') }}
   host:
     - expat
+    - libiconv  # [osx]
     - zlib
     - libboost
   run:
