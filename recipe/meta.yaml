@@ -10,19 +10,22 @@ source:
   sha256: 8892439e5570091965aaffe30b08631fdf7ca7f81f6495b4648f0950d7ea7963
   patches:
     # Patches for vc14. If this works we should wrapit in a ifdef and send the patch upstream.
-    - empty_char.patch  # [win and (py35 or py36)]
+    - empty_char.patch  # [win and py>35]
 
 build:
-  number: 4
+  number: 5
   run_exports:
     # no ABI lab result.  Pinning to major-minor as conda-forge has.
     - {{ pin_subpackage('libkml', max_pin='x.x') }}
+  ignore_run_exports:
+    - libiconv  # [osx]
 
 requirements:
   build:
     - cmake
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - make      # [unix]
   host:
     - expat
     - libiconv  # [osx]
