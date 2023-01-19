@@ -1,0 +1,12 @@
+Index: libkml-1.3.0/cmake/External_uriparser.cmake
+===================================================================
+--- libkml-1.3.0.orig/cmake/External_uriparser.cmake
++++ libkml-1.3.0/cmake/External_uriparser.cmake
+@@ -1,6 +1,6 @@
+ ExternalProject_Add(URIPARSER
+   PREFIX URIPARSER
+-  URL "http://sourceforge.net/projects/uriparser/files/Sources/0.7.5/uriparser-0.7.5.tar.bz2/download"
++  URL "http://sourceforge.net/projects/uriparser/files/Sources/0.7.5/uriparser-0.7.5.tar.gz/download"
+   URL_MD5 4f4349085fe5de33bcae8d0f26649593
+   BINARY_DIR ${CMAKE_BINARY_DIR}/URIPARSER/build
+   DOWNLOAD_DIR ${DOWNLOAD_LOCATION}
