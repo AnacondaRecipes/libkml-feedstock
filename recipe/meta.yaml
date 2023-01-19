@@ -52,6 +52,8 @@ requirements:
     - libboost
 
 test:
+  requires:
+    - conda-build  # [not win]
   commands:
     - test -f $PREFIX/lib/libkmlbase.so.1  # [linux]
     - test -f $PREFIX/lib/libkmlbase.dylib  # [osx]
