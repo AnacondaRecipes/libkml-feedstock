@@ -65,11 +65,14 @@ about:
   home: https://github.com/libkml/libkml
   license: BSD 3-Clause
   license_file: LICENSE
+  license_family: BSD
   summary: 'Reference implementation of OGC KML 2.2'
   description: |
     This is Google's reference implementation of OGC KML 2.2.
     It also includes implementations of Google's gx: extensions used by Google Earth,
     as well as several utility libraries for working with other formats.
+  doc_url: https://github.com/libkml/libkml
+  dev_url: https://github.com/libkml/libkml
 
 extra:
   recipe-maintainers:
