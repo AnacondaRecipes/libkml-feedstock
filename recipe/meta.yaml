@@ -27,6 +27,7 @@ requirements:
     - {{ compiler('cxx') }}
     - make      # [unix]
     - m2-patch  # [win]
+    - curl
   host:
     - expat
     - libiconv  # [osx]
