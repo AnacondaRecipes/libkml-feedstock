@@ -11,6 +11,7 @@ source:
   patches:
     # Patches for vc14. If this works we should wrapit in a ifdef and send the patch upstream.
     - empty_char.patch  # [win and py>35]
+    - uriparse.patch
 
 build:
   number: 6
@@ -27,6 +28,7 @@ requirements:
     - {{ compiler('cxx') }}
     - make      # [unix]
     - m2-patch  # [win]
+    - patch     # [not win]
     - curl
   host:
     - expat
