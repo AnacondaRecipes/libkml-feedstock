@@ -13,7 +13,7 @@ source:
     - empty_char.patch  # [win and py>35]
 
 build:
-  number: 5
+  number: 6
   run_exports:
     # no ABI lab result.  Pinning to major-minor as conda-forge has.
     - {{ pin_subpackage('libkml', max_pin='x.x') }}
