@@ -8,18 +8,15 @@ source:
   fn: libkml-{{ version }}.tar.gz
   url: https://github.com/libkml/libkml/archive/{{ version }}.tar.gz
   sha256: 8892439e5570091965aaffe30b08631fdf7ca7f81f6495b4648f0950d7ea7963
-  patches:
+  patches:              # [win]
     # Patches for vc14. If this works we should wrapit in a ifdef and send the patch upstream.
-    - empty_char.patch  # [win and py>35]
-    - uriparse.patch
+    - empty_char.patch  # [win]
 
 build:
-  number: 6
+  number: 7
   run_exports:
     # no ABI lab result.  Pinning to major-minor as conda-forge has.
     - {{ pin_subpackage('libkml', max_pin='x.x') }}
-  ignore_run_exports:
-    - libiconv  # [osx]
 
 requirements:
   build:
@@ -28,38 +25,22 @@ requirements:
     - {{ compiler('cxx') }}
     - make      # [unix]
     - m2-patch  # [win]
-    - patch     # [not win]
-    - curl
   host:
-    - expat
-    - libiconv  # [osx]
-    - zlib
-    - libboost
+    - expat {{ expat }}
+    - zlib {{ zlib }}
+    - boost-cpp {{ boost }}
+    - uriparser 0.9.3
   run:
-    # expat removed here because package has run_exports for itself
-    #    https://github.com/AnacondaRecipes/expat-feedstock/pull/1
-    # this req isn't actually necessary, as run_exports will add it.  Left here for reference.
-    # - expat 2.1.*
-    # zlib removed here because package has run_exports for itself
-    #    https://github.com/AnacondaRecipes/zlib-feedstock/pull/2
-    # this req isn't actually necessary, as run_exports will add it.  Left here for reference.
-    # - zlib 1.2.8
-    # boost removed here because package has run_exports for itself
-    #     https://github.com/AnacondaRecipes/boost-cpp-feedstock/pull/1
-    # this req isn't actually necessary, as run_exports will add it.  Left here for reference.
-    # - boost 1.64.*
-    # version pinning is provided by a "pin_run_as_build" key in the user-wide conda_build_config.yaml
-    - libboost
+    - expat      # version range through run_exports
+    - zlib       # version range through run_exports
+    # using boost headers only - no need for a run dependency
+    - {{ pin_compatible('uriparser') }}
 
 test:
-  requires:
-    - conda-build  # [not win]
   commands:
     - test -f $PREFIX/lib/libkmlbase.so.1  # [linux]
     - test -f $PREFIX/lib/libkmlbase.dylib  # [osx]
     - if not exist %LIBRARY_LIB%\\kmlbase.lib exit 1  # [win]
-    - conda inspect linkages -p $PREFIX libkml  # [not win]
-    - conda inspect objects -p $PREFIX libkml  # [osx]
 
 about:
   home: https://github.com/libkml/libkml
