@@ -29,7 +29,7 @@ requirements:
     - expat {{ expat }}
     - zlib {{ zlib }}
     - boost-cpp {{ boost }}
-    - uriparser 0.9.3
+    - uriparser 0.9.7
   run:
     - expat      # version range through run_exports
     - zlib       # version range through run_exports
