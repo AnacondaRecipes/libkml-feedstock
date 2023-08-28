@@ -28,7 +28,7 @@ requirements:
   host:
     - expat {{ expat }}
     - zlib {{ zlib }}
-    - boost-cpp {{ boost }}
+    - boost-cpp 1.82
     - uriparser 0.9.7
   run:
     - expat      # version range through run_exports
