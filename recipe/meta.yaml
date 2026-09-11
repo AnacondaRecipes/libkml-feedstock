@@ -8,9 +8,12 @@ source:
   fn: libkml-{{ version }}.tar.gz
   url: https://github.com/libkml/libkml/archive/{{ version }}.tar.gz
   sha256: 8892439e5570091965aaffe30b08631fdf7ca7f81f6495b4648f0950d7ea7963
-  patches:              # [win]
+  patches:
     # Patches for vc14. If this works we should wrapit in a ifdef and send the patch upstream.
     - empty_char.patch  # [win]
+    # Use the bundled static minizip; set MINIZIP_LIBRARY so the link works on
+    # platforms where find_package(MINIZIP) doesn't (e.g. osx-arm64).
+    - external_minizip.diff  # [unix]
 
 build:
   number: 8
