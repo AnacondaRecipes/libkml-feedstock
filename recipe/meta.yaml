@@ -9,10 +9,13 @@ source:
   url: https://github.com/libkml/libkml/archive/{{ version }}.tar.gz
   sha256: 8892439e5570091965aaffe30b08631fdf7ca7f81f6495b4648f0950d7ea7963
   patches:
-    # Patches for vc14. If this works we should wrapit in a ifdef and send the patch upstream.
-    - empty_char.patch  # [win]
-    # Use the bundled static minizip; set MINIZIP_LIBRARY so the link works on
-    # platforms where find_package(MINIZIP) doesn't (e.g. osx-arm64).
+    # backport https://github.com/libkml/libkml/commit/c9dda89c35961922d8060b05bc5f6d8e6964fe21
+    - 0001-Visual-Studio-2015-build-fix.patch
+    # backport (parts of) https://github.com/libkml/libkml/commit/9163d288dfae64139563190dbf09f82ec28e8559
+    - 0002-compile-and-test-libkml-on-MinGW-from-the-MSYS2-proj.patch
+    # skip a very few failing tests on windows
+    - 0003-skip-some-few-tests-in-DateTime-Kmz-Test.patch  # [win]
+    # Use a static library for minizip
     - external_minizip.diff  # [unix]
 
 build:
