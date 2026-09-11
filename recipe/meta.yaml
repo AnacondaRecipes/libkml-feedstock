@@ -8,9 +8,6 @@ source:
   fn: libkml-{{ version }}.tar.gz
   url: https://github.com/libkml/libkml/archive/{{ version }}.tar.gz
   sha256: 8892439e5570091965aaffe30b08631fdf7ca7f81f6495b4648f0950d7ea7963
-  patches:              # [win]
-    # Patches for vc14. If this works we should wrapit in a ifdef and send the patch upstream.
-    - empty_char.patch  # [win]
 
 build:
   number: 8

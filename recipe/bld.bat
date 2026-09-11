@@ -1,4 +1,6 @@
 set CMAKE_POLICY_VERSION_MINIMUM=3.5
+powershell -NoProfile -ExecutionPolicy Bypass -File "%RECIPE_DIR%\fix_win_cc.ps1"
+if errorlevel 1 exit 1
 mkdir build
 cd build
 
