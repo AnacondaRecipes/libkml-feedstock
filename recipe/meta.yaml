@@ -15,8 +15,6 @@ source:
     - 0002-compile-and-test-libkml-on-MinGW-from-the-MSYS2-proj.patch
     # skip a very few failing tests on windows
     - 0003-skip-some-few-tests-in-DateTime-Kmz-Test.patch  # [win]
-    # Use a static library for minizip
-    - external_minizip.diff  # [unix]
 
 build:
   number: 8
