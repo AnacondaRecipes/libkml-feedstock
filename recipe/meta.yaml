@@ -17,7 +17,7 @@ source:
     - 0003-skip-some-few-tests-in-DateTime-Kmz-Test.patch  # [win]
 
 build:
-  number: 8
+  number: 9
   run_exports:
     # no ABI lab result.  Pinning to major-minor as conda-forge has.
     - {{ pin_subpackage('libkml', max_pin='x.x') }}
@@ -32,8 +32,8 @@ requirements:
   host:
     - expat {{ expat }}
     - zlib {{ zlib }}
-    - boost-cpp 1.82
-    - uriparser 0.9.7
+    - libboost-headers {{ libboost }}
+    - uriparser 0.9.8
   run:
     - expat      # version range through run_exports
     - zlib       # version range through run_exports
